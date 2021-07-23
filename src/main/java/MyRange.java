@@ -31,12 +31,12 @@ public class MyRange {
     public String getResult() {
         int numberStart = getStart();
         int numberEnd = getEnd();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = numberStart; i <= numberEnd ; i++)
         {
-            result = result + i;
-            if (i!=numberEnd) result = result + ",";
+            result.append(i);
+            if (i!=numberEnd) result.append(",");
         }
-        return result;
+        return result.toString();
     }
 }
