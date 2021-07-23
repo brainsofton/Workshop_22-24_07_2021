@@ -60,4 +60,10 @@ public class MyRangeTest {
         int result = myRange.getEnd();
         assertEquals(4, result);
     }
+    @Test
+    public void case01(){
+        MyRange myRange = new MyRange("[1,5]");
+        String result = myRange.getResult();
+        assertEquals("1,2,3,4,5",result);
+    }
 }

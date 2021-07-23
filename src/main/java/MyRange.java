@@ -27,4 +27,16 @@ public class MyRange {
         }
         return Integer.parseInt(String.valueOf(this.input.charAt(3)))-1;
     }
+
+    public String getResult() {
+        int numberStart = getStart();
+        int numberEnd = getEnd();
+        String result = "";
+        for (int i = numberStart; i <= numberEnd ; i++)
+        {
+            result = result + i;
+            if (i!=numberEnd) result = result + ",";
+        }
+        return result;
+    }
 }
