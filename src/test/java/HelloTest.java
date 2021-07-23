@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloTest {
     @Test
-    @DisplayName("ทำการทดสอบ.....")
+    @DisplayName("ทำการทดสอบ")
     public void case01(){
         // Arrange
         Hello hello = new Hello();

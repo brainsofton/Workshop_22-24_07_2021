@@ -13,6 +13,18 @@ public class MyRange {
         {
             return Integer.parseInt(String.valueOf(this.input.charAt(1)));
         }
-        return -1;
+        return Integer.parseInt(String.valueOf(this.input.charAt(1)))+1;
+    }
+
+    public boolean isEndWithInclude() {
+        return this.input.endsWith("]");
+    }
+
+    public int getEnd() {
+        if(isEndWithInclude())
+        {
+            return Integer.parseInt(String.valueOf(this.input.charAt(3)));
+        }
+        return Integer.parseInt(String.valueOf(this.input.charAt(3)))-1;
     }
 }
