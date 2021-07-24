@@ -11,9 +11,9 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class TennisGameTest1 {
 
-    private int player1Score;
-    private int player2Score;
-    private String expectedScore;
+    private final int player1Score;
+    private final int player2Score;
+    private final String expectedScore;
 
     public TennisGameTest1(int player1Score, int player2Score, String expectedScore) {
         this.player1Score = player1Score;

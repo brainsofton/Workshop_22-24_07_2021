@@ -3,6 +3,7 @@ import java.util.Objects;
 public class TennisGame1 {
     private int m_score1 = 0;
     private int m_score2 = 0;
+    private final int matchPoint = 2;
     private final String player1Name;
     private final String player2Name;
 
@@ -12,65 +13,46 @@ public class TennisGame1 {
     }
 
     public void wonPoint(String playerName) {
-        if (Objects.equals(playerName, "player1"))
+        if (Objects.equals(playerName, this.player1Name))
             m_score1 += 1;
         else
             m_score2 += 1;
     }
 
     public String getScore() {
-        StringBuilder score = new StringBuilder();
-        int tempScore;
-        if (m_score1==m_score2)
+        String[] scoreResults = new String[]{"Love","Fifteen","Thirty"};
+        int diffScore = Math.abs(m_score1-m_score2);
+        if (isAll()) {
+            return scoreResults[m_score1] + "-" + "All";
+        }
+        if (isDeuce()) {
+            return "Deuce";
+        }
+        if ((m_score1>=4 || m_score2>=4) && diffScore == 1)
         {
-            switch (m_score1)
-            {
-                case 0:
-                    score = new StringBuilder("Love-All");
-                    break;
-                case 1:
-                    score = new StringBuilder("Fifteen-All");
-                    break;
-                case 2:
-                    score = new StringBuilder("Thirty-All");
-                    break;
-                default:
-                    score = new StringBuilder("Deuce");
-                    break;
+            return playerComparisons("Advantage ");
+        }
+        if ((m_score1>=4 || m_score2>=4) && diffScore >= 2)
+        {
+            return playerComparisons("Win for ");
+        }
+        return scoreResults[m_score1]+"-"+scoreResults[m_score2];
 
-            }
-        }
-        else if (m_score1>=4 || m_score2>=4)
-        {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score = new StringBuilder("Advantage player1");
-            else if (minusResult ==-1) score = new StringBuilder("Advantage player2");
-            else if (minusResult>=2) score = new StringBuilder("Win for player1");
-            else score = new StringBuilder("Win for player2");
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score.append("-"); tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score.append("Love");
-                        break;
-                    case 1:
-                        score.append("Fifteen");
-                        break;
-                    case 2:
-                        score.append("Thirty");
-                        break;
-                    case 3:
-                        score.append("Forty");
-                        break;
-                }
-            }
-        }
+    }
+
+    private String playerComparisons(String scoreName) {
+        StringBuilder score = new StringBuilder(scoreName);
+        if (m_score1 > m_score2) {
+            score.append(this.player1Name);
+        } else score.append(this.player2Name);
         return score.toString();
+    }
+
+    private boolean isDeuce() {
+        return m_score1 == m_score2 && m_score1 > matchPoint;
+    }
+
+    private boolean isAll() {
+        return m_score1 == m_score2 && m_score1 < matchPoint;
     }
 }
